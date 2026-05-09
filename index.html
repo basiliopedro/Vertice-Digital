@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vértice Digital — Inovação digital com propósito</title>
+  <meta name="description" content="Construímos produtos digitais que transformam a forma como pessoas e empresas crescem.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:       #0F1117;
+      --bg2:      #1A2233;
+      --bg3:      #0B1728;
+      --blue:     #157BFF;
+      --cyan:     #4FD1FF;
+      --text:     #F5F7FA;
+      --muted:    #9BA7B4;
+      --border:   #2A3446;
+      --wa:       #25D366;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+      background: rgba(15,17,23,0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(42,52,70,0.6);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 36px; width: auto;
+    }
+
+    .nav-logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: 16px;
+      letter-spacing: 2px; color: var(--text);
+      line-height: 1;
+    }
+
+    .nav-logo-text span {
+      display: block; font-weight: 300;
+      font-size: 9px; letter-spacing: 4px;
+      color: var(--cyan); margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--wa); color: #fff;
+      padding: 10px 20px; border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px; font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s, transform .2s;
+    }
+
+    .nav-cta:hover { opacity: .88; transform: translateY(-1px); }
+
+    .nav-cta svg { width: 16px; height: 16px; fill: #fff; }
+
+    .nav-ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-ham span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 48px 80px;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 65% 45%, rgba(21,123,255,.09) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 35% at 80% 15%, rgba(79,209,255,.06) 0%, transparent 60%);
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(42,52,70,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,52,70,.12) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at 60% 50%, rgba(0,0,0,.35) 0%, transparent 65%);
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 640px;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(79,209,255,.25);
+      background: rgba(79,209,255,.07);
+      padding: 5px 14px; border-radius: 100px;
+      font-size: 11px; font-weight: 500;
+      color: var(--cyan); letter-spacing: 1.5px;
+      margin-bottom: 28px;
+      animation: fadeUp .7s .1s both;
+    }
+
+    .hero-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cyan);
+      animation: blink 2s infinite;
+    }
+
+    .hero-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -.5px;
+      animation: fadeUp .7s .2s both;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      background: linear-gradient(120deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-words {
+      margin-top: 20px;
+      display: flex; flex-wrap: wrap; align-items: center;
+      animation: fadeUp .7s .3s both;
+    }
+
+    .hero-words .word {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px; font-weight: 600;
+      color: var(--text); letter-spacing: .3px;
+    }
+
+    .hero-words .sep {
+      color: var(--blue); margin: 0 10px;
+      font-weight: 300; font-size: 14px;
+    }
+
+    .hero-actions {
+      display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap;
+      animation: fadeUp .7s .4s both;
+    }
+
+    .btn-primary {
+      background: var(--blue); color: #fff;
+      padding: 13px 28px; border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px; font-weight: 600;
+      text-decoration: none; letter-spacing: .3px;
+      transition: all .2s; border: 1px solid transparent;
+    }
+
+    .btn-primary:hover {
+      background: #0e65d4; transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(21,123,255,.3);
+    }
+
+    .btn-outline {
+      background: transparent; color: var(--text);
+      padding: 13px 28px; border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px; font-weight: 600;
+      text-decoration: none; letter-spacing: .3px;
+      border: 1px solid var(--border);
+      transition: all .2s;
+    }
+
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+    .hero-visual {
+      position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 48%; display: flex;
+      align-items: center; justify-content: center;
+      z-index: 0; pointer-events: none;
+      animation: fadeLeft 1s .3s both;
+    }
+
+    .hero-svg {
+      width: min(420px, 80%); opacity: .07;
+      filter: drop-shadow(0 0 60px rgba(21,123,255,.6));
+    }
+
+    /* ── SECTION BASE ── */
+    .section { padding: 96px 48px; }
+    .section--dark { background: var(--bg2); }
+
+    .section-label {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; color: var(--blue);
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+
+    .section-label::before {
+      content: ''; width: 22px; height: 2px;
+      background: var(--blue); flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(26px, 3.5vw, 44px);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -.5px;
+    }
+
+    .section-title em { font-style: normal; color: var(--blue); }
+
+    .section-desc {
+      margin-top: 14px; font-size: 15px;
+      color: var(--muted); line-height: 1.8;
+      max-width: 520px;
+    }
+
+    /* ── PRODUTOS ── */
+    .products-inner {
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    .products-header { margin-bottom: 56px; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 36px 32px;
+      display: flex; flex-direction: column; gap: 20px;
+      transition: all .3s; position: relative; overflow: hidden;
+    }
+
+    .product-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .3s;
+    }
+
+    .product-card:hover { transform: translateY(-5px); border-color: rgba(21,123,255,.35); }
+    .product-card:hover::before { transform: scaleX(1); }
+
+    .product-logo {
+      width: 72px; height: 72px; border-radius: 16px;
+      object-fit: contain; background: #fff;
+      padding: 6px;
+    }
+
+    .product-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px; font-weight: 700;
+    }
+
+    .product-desc {
+      font-size: 14px; color: var(--muted); line-height: 1.7;
+      flex: 1;
+    }
+
+    .product-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--blue); font-size: 13px; font-weight: 600;
+      text-decoration: none; letter-spacing: .3px;
+      transition: gap .2s;
+    }
+
+    .product-link:hover { gap: 12px; }
+
+    .product-link svg {
+      width: 14px; height: 14px;
+      stroke: var(--blue); fill: none; stroke-width: 2.5;
+    }
+
+    /* ── MISSÃO ── */
+    .mission-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+
+    .mission-quote {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(20px, 2.5vw, 30px);
+      font-weight: 600; line-height: 1.4;
+      color: var(--text);
+      border-left: 3px solid var(--blue);
+      padding-left: 28px;
+    }
+
+    .mission-quote em { font-style: normal; color: var(--cyan); }
+
+    .mission-right { display: flex; flex-direction: column; gap: 20px; }
+
+    .mission-stat {
+      padding: 22px 26px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color .2s;
+    }
+
+    .mission-stat:hover { border-color: rgba(21,123,255,.35); }
+
+    .mission-stat-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 32px; font-weight: 800;
+      background: linear-gradient(120deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .mission-stat-label {
+      font-size: 13px; color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── CTA ── */
+    .cta-inner {
+      max-width: 680px; margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -.5px;
+    }
+
+    .cta-title em { font-style: normal; color: var(--blue); }
+
+    .cta-desc {
+      margin: 18px auto 0;
+      font-size: 16px; color: var(--muted);
+      line-height: 1.8; max-width: 480px;
+    }
+
+    .cta-actions { margin-top: 36px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--wa); color: #fff;
+      padding: 14px 30px; border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px; font-weight: 700;
+      text-decoration: none; letter-spacing: .3px;
+      transition: all .2s;
+    }
+
+    .btn-wa:hover { opacity: .88; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,.25); }
+
+    .btn-wa svg { width: 18px; height: 18px; fill: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg3);
+      border-top: 1px solid var(--border);
+      padding: 64px 48px 32px;
+    }
+
+    .footer-top {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-brand-desc {
+      font-size: 13px; color: var(--muted);
+      line-height: 1.8; margin-top: 14px;
+      max-width: 240px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 18px;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .footer-col ul a {
+      color: var(--muted); text-decoration: none;
+      font-size: 13px; transition: color .2s;
+    }
+
+    .footer-col ul a:hover { color: var(--text); }
+
+    .footer-bottom {
+      max-width: 1100px; margin: 28px auto 0;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+
+    .footer-bottom p { font-size: 12px; color: var(--muted); }
+    .footer-bottom span { color: var(--cyan); }
+
+    .footer-socials { display: flex; gap: 14px; }
+
+    .footer-socials a {
+      width: 36px; height: 36px; border-radius: 8px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-decoration: none;
+      font-size: 13px; transition: all .2s;
+    }
+
+    .footer-socials a:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateY(-50%) translateX(32px); }
+      to   { opacity: 1; transform: translateY(-50%) translateX(0); }
+    }
+
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: .3; }
+    }
+
+    @keyframes slide {
+      0%   { transform: translateY(0); }
+      20%  { transform: translateY(-44px); }
+      40%  { transform: translateY(-88px); }
+      60%  { transform: translateY(-132px); }
+      80%  { transform: translateY(-176px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-ham { display: flex; }
+
+      .nav-mobile {
+        position: fixed; top: 68px; left: 0; right: 0;
+        background: var(--bg2);
+        border-bottom: 1px solid var(--border);
+        padding: 24px 24px 32px;
+        display: none; flex-direction: column; gap: 0;
+        z-index: 998;
+      }
+
+      .nav-mobile.open { display: flex; }
+
+      .nav-mobile a {
+        color: var(--muted); text-decoration: none;
+        font-size: 15px; font-weight: 500;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+        transition: color .2s;
+      }
+
+      .nav-mobile a:last-child { border-bottom: none; }
+      .nav-mobile a:hover { color: var(--text); }
+
+      .nav-mobile .nav-mobile-cta {
+        margin-top: 20px;
+        display: flex; align-items: center;
+        justify-content: center; gap: 8px;
+        background: var(--wa); color: #fff;
+        padding: 13px; border-radius: 6px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px; font-weight: 700;
+      }
+
+      .hero { padding: 100px 20px 60px; min-height: auto; }
+      .hero-visual { display: none; }
+      .hero-content { max-width: 100%; }
+
+      .section { padding: 64px 20px; }
+
+      .mission-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-brand { grid-column: span 2; }
+      footer { padding: 48px 20px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: span 1; }
+      .hero-title { font-size: 34px; }
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="img/logo.png" alt="Vértice Digital" onerror="this.style.display='none'">
+    <div class="nav-logo-text">VÉRTICE <span>DIGITAL</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="produtos.html">Produtos</a></li>
+    <li><a href="equipe.html">Equipe</a></li>
+    <li><a href="newsroom.html">Newsroom</a></li>
+    <li><a href="carreiras.html">Carreiras</a></li>
+    <li><a href="contato.html">Contato</a></li>
+  </ul>
+  <a href="https://wa.me/244938528084" target="_blank" rel="noopener" class="nav-cta">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.525 5.845L.057 23.885l6.196-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.001-1.368l-.359-.214-3.68.861.92-3.582-.234-.369A9.78 9.78 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    Falar com a equipe
+  </a>
+  <div class="nav-ham" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MENU MOBILE -->
+<div class="nav-mobile" id="navMobile">
+  <a href="sobre.html">Sobre</a>
+  <a href="produtos.html">Produtos</a>
+  <a href="equipe.html">Equipe</a>
+  <a href="newsroom.html">Newsroom</a>
+  <a href="carreiras.html">Carreiras</a>
+  <a href="contato.html">Contato</a>
+  <a href="https://wa.me/244938528084" target="_blank" class="nav-mobile-cta">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.525 5.845L.057 23.885l6.196-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.001-1.368l-.359-.214-3.68.861.92-3.582-.234-.369A9.78 9.78 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    Falar com a equipe
+  </a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Benguela · Angola · 2026
+    </div>
+    <h1 class="hero-title">Inovação digital<br><em>com propósito.</em></h1>
+    <div class="hero-words">
+      <span class="word">Desenvolvemos</span>
+      <span class="sep">·</span>
+      <span class="word">Criamos</span>
+      <span class="sep">·</span>
+      <span class="word">Inovamos</span>
+      <span class="sep">·</span>
+      <span class="word">Transformamos</span>
+      <span class="sep">·</span>
+      <span class="word">Crescemos</span>
+    </div>
+    <div class="hero-actions">
+      <a href="produtos.html" class="btn-primary">Conhecer os produtos</a>
+      <a href="sobre.html" class="btn-outline">Sobre a empresa</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <svg class="hero-svg" viewBox="0 0 200 220" fill="none">
+      <path d="M100 10L185 175H15L100 10Z" stroke="#157BFF" stroke-width="1.5"/>
+      <path d="M100 30L165 165H35L100 30Z" stroke="#4FD1FF" stroke-width="1" fill="rgba(21,123,255,.04)"/>
+      <path d="M100 60L145 160H55L100 60Z" fill="rgba(79,209,255,.07)"/>
+      <line x1="100" y1="10" x2="100" y2="175" stroke="#4FD1FF" stroke-width=".5" opacity=".4"/>
+      <circle cx="100" cy="10" r="3" fill="#157BFF"/>
+      <circle cx="15" cy="175" r="2" fill="#4FD1FF" opacity=".5"/>
+      <circle cx="185" cy="175" r="2" fill="#4FD1FF" opacity=".5"/>
+    </svg>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section class="section section--dark" id="produtos">
+  <div class="products-inner">
+    <div class="products-header reveal">
+      <div class="section-label">Produtos</div>
+      <h2 class="section-title">O que <em>construímos</em></h2>
+      <p class="section-desc">Produtos digitais desenvolvidos para resolver problemas reais do mercado africano.</p>
+    </div>
+    <div class="products-grid reveal">
+      <div class="product-card">
+        <img src="img/vendabot.png" alt="VendaBot" class="product-logo" onerror="this.style.background='#1A2233';this.style.display='flex';this.style.alignItems='center';this.style.justifyContent='center'">
+        <div class="product-name">VendaBot</div>
+        <p class="product-desc">Bot inteligente para automatizar vendas e atendimento no WhatsApp. Disponível 24 horas, fala como humano, converte como máquina.</p>
+        <a href="https://vendabot.com" target="_blank" rel="noopener" class="product-link">
+          Conhecer o VendaBot
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSÃO -->
+<section class="section" id="missao">
+  <div class="mission-inner">
+    <div class="reveal">
+      <div class="section-label">Missão</div>
+      <p class="mission-quote">
+        "Construir produtos digitais que transformam a forma como <em>pessoas e empresas crescem.</em>"
+      </p>
+      <div style="margin-top:32px;">
+        <a href="sobre.html" class="btn-outline">Conhecer a empresa</a>
+      </div>
+    </div>
+    <div class="mission-right reveal">
+      <div class="mission-stat">
+        <div class="mission-stat-num">2026</div>
+        <div class="mission-stat-label">Fundada em Benguela, Angola</div>
+      </div>
+      <div class="mission-stat">
+        <div class="mission-stat-num">100%</div>
+        <div class="mission-stat-label">Tecnologia de origem africana</div>
+      </div>
+      <div class="mission-stat">
+        <div class="mission-stat-num">Local</div>
+        <div class="mission-stat-label">Preços em moeda local, acessíveis a todos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section section--dark" id="cta">
+  <div class="cta-inner reveal">
+    <div class="section-label" style="justify-content:center;">Vamos começar</div>
+    <h2 class="cta-title">Pronto para <em>inovar?</em></h2>
+    <p class="cta-desc">Fala com a nossa equipe e descobre como podemos transformar o teu negócio.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/244938528084" target="_blank" rel="noopener" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.525 5.845L.057 23.885l6.196-1.448A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.001-1.368l-.359-.214-3.68.861.92-3.582-.234-.369A9.78 9.78 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a href="contato.html" class="btn-outline">Enviar mensagem</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <img src="img/logo.png" alt="Vértice Digital" height="32" onerror="this.style.display='none'">
+        <div class="nav-logo-text">VÉRTICE <span>DIGITAL</span></div>
+      </a>
+      <p class="footer-brand-desc">Inovação digital com propósito. Tecnologia africana para o mundo.</p>
+      <div class="footer-socials" style="margin-top:16px;">
+        <a href="#" title="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" title="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="#" title="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="equipe.html">Equipe</a></li>
+        <li><a href="newsroom.html">Newsroom</a></li>
+        <li><a href="carreiras.html">Carreiras</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Produtos</h4>
+      <ul>
+        <li><a href="https://vendabot.com" target="_blank">VendaBot</a></li>
+        <li><a href="#">Em breve...</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacidade</a></li>
+        <li><a href="#">Termos</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Vértice Digital. Todos os direitos reservados.</p>
+    <p>Feito em <span>Benguela, Angola 🇦🇴</span></p>
+  </div>
+</footer>
+
+<script>
+  // Menu mobile
+  function toggleMenu() {
+    document.getElementById('navMobile').classList.toggle('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.borderBottomColor =
+      window.scrollY > 20 ? 'rgba(42,52,70,.9)' : 'rgba(42,52,70,.6)';
+  });
+</script>
+</body>
+</html>
