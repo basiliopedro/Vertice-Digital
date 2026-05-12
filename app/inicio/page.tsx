@@ -1,14 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function InicioPage() {
   return (
     <main className="site-page">
-      <header className="site-nav">
-        <Link href="/" className="site-brand">
-          VÉRTICE <span>DIGITAL</span>
+      <header className="main-nav">
+        <Link href="/" className="main-logo">
+          <Image src="/logo.png" alt="Vértice Digital" width={38} height={38} />
+          <div>
+            VÉRTICE <span>DIGITAL</span>
+          </div>
         </Link>
 
-        <nav className="site-links">
+        <nav className="main-links">
           <Link href="/sobre">Sobre</Link>
           <Link href="/produtos">Produtos</Link>
           <Link href="/equipe">Equipe</Link>
@@ -17,26 +21,41 @@ export default function InicioPage() {
           <Link href="/contato">Contato</Link>
         </nav>
 
-        <Link href="/contato" className="site-nav-button">
-          Falar conosco
+        <Link href="/contato" className="main-cta">
+          Falar com a equipe
         </Link>
       </header>
 
-      <section className="home-hero">
-        <div className="home-hero-content">
-          <p className="section-kicker">VÉRTICE DIGITAL</p>
+      <section className="main-hero">
+        <div className="hero-glow"></div>
+        <div className="hero-grid"></div>
 
-          <h1>
-            Tecnologia feita para transformar ideias em sistemas reais.
+        <div className="main-hero-content">
+          <div className="hero-badge">
+            <span></span>
+            Benguela · Angola · 2026
+          </div>
+
+          <h1 className="main-hero-title">
+            Inovação digital <br />
+            <em>com propósito.</em>
           </h1>
 
-          <p className="home-hero-text">
-            Espaço reservado para a mensagem principal da empresa.
-          </p>
+          <div className="hero-keywords">
+            <span>Desenvolvemos</span>
+            <b>·</b>
+            <span>Criamos</span>
+            <b>·</b>
+            <span>Inovamos</span>
+            <b>·</b>
+            <span>Transformamos</span>
+            <b>·</b>
+            <span>Crescemos</span>
+          </div>
 
-          <div className="home-actions">
+          <div className="hero-actions">
             <Link href="/produtos" className="primary-button">
-              Ver produtos
+              Conhecer os produtos
             </Link>
 
             <Link href="/sobre" className="secondary-button">
@@ -47,4 +66,4 @@ export default function InicioPage() {
       </section>
     </main>
   );
-}
+            }
